@@ -6,15 +6,15 @@ module lab2_ey(
     input  logic         reset, enable, 
     output logic [6:0]   seg,
     output logic         digit_select, a0, a1 // control which one is on
-    // TODO: HARDWARE: add a not gate somewhere to connect to the other annode?
     // TODO: HARDWARE: corresponding pins of the 2 digits connected to the same pin
 );
     logic       int_osc;
     logic [3:0] s;
+    logic [16:0]    digit_counter;
     HSOSC hf_osc (.CLKHFPU(1'b1), .CLKHFEN(1'b1), .CLKHF(int_osc));	
 
-    // TODO: figure out what size counter need to be and what speed to blink at
-    counter #(1,1) counter(.clk(int_osc), .reset, .slow_clk(digit_select), .enable); 
+    // counter blinking at above 60 Hz would be enough to fool human eyes
+    counter #(16,40000) counter(.clk(int_osc), .reset, .slow_clk(digit_select), .enable, .counter(digit_counter)); 
 	
     // decides what input switch to use
     assign s = digit_select ? s0 : s1;
