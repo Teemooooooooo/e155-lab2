@@ -5,7 +5,7 @@ module lab2_ey(
     input  logic [3:0]   s0, s1,
     input  logic         reset, enable, 
     output logic [6:0]   seg,
-    output logic         digit_select // control which one is on
+    output logic         digit_select, a0, a1 // control which one is on
     // TODO: HARDWARE: add a not gate somewhere to connect to the other annode?
     // TODO: HARDWARE: corresponding pins of the 2 digits connected to the same pin
 );
@@ -18,6 +18,9 @@ module lab2_ey(
 	
     // decides what input switch to use
     assign s = digit_select ? s0 : s1;
+    // determine which digit lights up
+    assign a0 = digit_select;
+    assign a1 = ~ digit_select;
     seven_seg seven_seg(.s, .seg);
     
 
