@@ -3,9 +3,9 @@
 
 module counter #(parameter COUNTER_SIZE = 25, MAX_THRESHOLD = 24'd10000000)(
 	input   logic 		clk, reset, enable,
-	output  logic 		slow_clk
+	output  logic 		slow_clk,
+	output  logic 		[COUNTER_SIZE-1:0] counter
 	);
-	logic [COUNTER_SIZE-1:0] counter = 0;
 
 	// Simple clock divider
 	always_ff @(posedge clk)
