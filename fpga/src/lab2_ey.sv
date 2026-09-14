@@ -2,10 +2,11 @@
 // Top level containing the modules
 
 module lab2_ey(
-    input  logic [3:0]   s0, s1,
+    input  logic [3:0]   s0, s1, c,
     input  logic         reset, enable, 
     output logic [6:0]   seg,
-    output logic         digit_select, a0, a1 // control which one is on
+    output logic         digit_select, a0, a1, // control which one is on
+    output logic [3:0]   led
     // TODO: HARDWARE: corresponding pins of the 2 digits connected to the same pin
 );
     logic       int_osc;
@@ -22,6 +23,9 @@ module lab2_ey(
     assign a0 = digit_select;
     assign a1 = ~ digit_select;
     seven_seg seven_seg(.s, .seg);
+
+    // LED logic from input 
+    assign led = ~ c;
     
 
     
