@@ -5,11 +5,11 @@ module lab2_ey(
     input  logic [3:0]   s0, s1, c,
     input  logic         reset, enable, 
     output logic [6:0]   seg,
-    output logic         digit_select, a0, a1, // control which one is on
+    output logic         a0, a1, // control which one is on
     output logic [3:0]   led
     // TODO: HARDWARE: corresponding pins of the 2 digits connected to the same pin
 );
-    logic       int_osc;
+    logic       int_osc, digit_select;
     logic [3:0] s;
     logic [16:0]    digit_counter;
     HSOSC hf_osc (.CLKHFPU(1'b1), .CLKHFEN(1'b1), .CLKHF(int_osc));	
