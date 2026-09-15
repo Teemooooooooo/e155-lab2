@@ -6,7 +6,7 @@ module lab2_ey(
     input  logic         reset, enable, 
     output logic [6:0]   seg,
     output logic         a0, a1, // control which one is on
-    output logic [3:0]   led
+    output logic [3:0]   led, scan_out
     // TODO: HARDWARE: corresponding pins of the 2 digits connected to the same pin
 );
     logic       int_osc, digit_select;
@@ -23,6 +23,9 @@ module lab2_ey(
     assign a0 = digit_select;
     assign a1 = ~ digit_select;
     seven_seg seven_seg(.s, .seg);
+
+	// scanning module declaration
+	scanning scanning(.reset, .enable, .clk(int_osc), .scan_out);
 
     // LED logic from input 
     assign led = ~ c;

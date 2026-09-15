@@ -35,7 +35,7 @@ module scanning_tb();
         #50;
         reset = 1'b0;
         #20;
-        assert (dut.counter == 24'b0)
+        assert (dut.count == 24'b0)
             $display("PASSED! Counter resetted as expected at time: %0t.", $time);
         else 
             $error("FAILED! Counter behaves incorrectly at time: %0t.", $time); 
@@ -82,11 +82,11 @@ module scanning_tb();
         reset = 1'b0;
         #10;
         reset = 1'b1;
-        #300000; // counter get to 300000
-		assert (dut.count == 21'b300000)
+        #30000000; // counter get to 300000
+		assert (dut.count == 21'd3000000)
             $display("PASSED! Counter got back to zero as expected: %0t.", $time);
         else
-            $display("FAILED! Counter has %0d at time: %0t.", dut.counter, $time);
+            $display("FAILED! Counter has %0d at time: %0t.", dut.count, $time);
 		
         assert (scan_out == 4'b0010)
             $display("PASSED! output is 0010 as expected: %0t.", $time);
@@ -94,22 +94,22 @@ module scanning_tb();
             $display("FAILED! incorrect output behavior %0d at time: %0t.", scan_out, $time);
     
     // case: 0100
-        #300000;
+        #30000000;
         assert (scan_out == 4'b0100)
             $display("PASSED! output is 0100 as expected at counter %0d: %0t.", dut.count, $time);
         else
             $display("FAILED! incorrect output behavior %0d at time: %0t.", scan_out, $time);
 
     // case: 1000
-        #300000;
+        #30000000;
         assert (scan_out == 4'b1000)
             $display("PASSED! output is 1000 as expected at counter %0d: %0t.", dut.count, $time);
         else
             $display("FAILED! incorrect output behavior %0d at time: %0t.", scan_out, $time);
 
     // counter go back to 0
-        #300000;
-        assert (dut.counter == 24'b0)
+        #30000000;
+        assert (dut.count == 24'b0)
             $display("PASSED! Counter resetted as expected at time: %0t.", $time);
         else 
             $error("FAILED! Counter behaves incorrectly at time: %0t.", $time); 
