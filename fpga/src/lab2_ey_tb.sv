@@ -28,22 +28,9 @@ module lab2_ey_tb();
     // multiplexing functionality test
         s0[3:0] = ~4'b0000;                // input for s0
         s1[3:0] = ~4'b1111;                // input for s1
-        #10;
-        assert (a1 == 0)        // check outputs
-            $display("PASSED! a1 is 0 at time: %0t.", $time);
-        else 
-            $error("FAILED! a1 is 1 at time: %0t.", $time); 
-        assert (a0 == 1)        // check outputs
-            $display("PASSED! a0 is 1 at time: %0t.", $time);
-        else 
-            $error("FAILED! a0 is 0 at time: %0t.", $time); 
-        assert (seg == ~7'b1111110)        // check outputs
-            $display("PASSED! The 7 segment display behaves as desired at time: %0t.", $time);
-        else 
-            $error("FAILED! The 7 segment display behaves incorrectly at time: %0t.", $time); 
 
-        // now it should switch
-        #17000000;
+        // first case
+        #10;
         assert (a0 == 0)        // check outputs
             $display("PASSED! a0 is 0 at time: %0t.", $time);
         else 
@@ -53,6 +40,22 @@ module lab2_ey_tb();
         else 
             $error("FAILED! a1 is 0 at time: %0t.", $time); 
         assert (seg == ~7'b1000111)          // check outputs
+            $display("PASSED! The 7 segment display behaves as desired at time: %0t.", $time);
+        else 
+            $error("FAILED! The 7 segment display behaves incorrectly at time: %0t.", $time); 
+		
+		// now it should switch
+		#1000000;
+		
+		assert (a1 == 0)        // check outputs
+            $display("PASSED! a1 is 0 at time: %0t.", $time);
+        else 
+            $error("FAILED! a1 is 1 at time: %0t.", $time); 
+        assert (a0 == 1)        // check outputs
+            $display("PASSED! a0 is 1 at time: %0t.", $time);
+        else 
+            $error("FAILED! a0 is 0 at time: %0t.", $time); 
+        assert (seg == ~7'b1111110)        // check outputs
             $display("PASSED! The 7 segment display behaves as desired at time: %0t.", $time);
         else 
             $error("FAILED! The 7 segment display behaves incorrectly at time: %0t.", $time); 

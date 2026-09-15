@@ -82,8 +82,8 @@ module scanning_tb();
         reset = 1'b0;
         #10;
         reset = 1'b1;
-        #60000000; // counter get to 300000
-		assert (dut.count == 25'd3000000)
+        #60000000; // counter get to 600000
+		assert (dut.count == 25'd6000000)
             $display("PASSED! Counter got back to zero as expected: %0t.", $time);
         else
             $display("FAILED! Counter has %0d at time: %0t.", dut.count, $time);
