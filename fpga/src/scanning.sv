@@ -5,12 +5,12 @@ module scanning(
     input  logic        reset, enable,clk,
     output logic [3:0]  scan_out
 );
-    logic [20:0] count;
+    logic [24:0] count;
     logic  slow_clk;
-    counter #(21, 12000000) scan_counter(.clk, .reset, .slow_clk, .enable, .counter(count)); 
+    counter #(25, 24000000) scan_counter(.clk, .reset, .slow_clk, .enable, .counter(count)); 
 
-    assign scan_out[0] = (count < 21'd3000000);
-    assign scan_out[1] = ((21'd3000000 <= count) & (count < 21'd6000000));
-    assign scan_out[2] = ((21'd6000000 <= count) & (count < 21'd9000000));
-    assign scan_out[3] = ((21'd9000000 <= count) & (count <= 21'd12000000));
+    assign scan_out[0] = (count < 25'd6000000);
+    assign scan_out[1] = ((25'd6000000 <= count) & (count < 25'd12000000));
+    assign scan_out[2] = ((25'd12000000 <= count) & (count < 25'd18000000));
+    assign scan_out[3] = ((25'd18000000 <= count) & (count <= 25'd24000000));
 endmodule
